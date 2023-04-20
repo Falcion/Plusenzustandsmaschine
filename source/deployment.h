@@ -1,15 +1,16 @@
 #include <string>
-#include <vector>
+#include <list>
 
 using namespace std;
 
 class deployment {
+private:
+	list<string> messages;
 public:
 	string name;
 	int id;
-	int codes;
-	int scope;
-	vector<string> message;
+	long long codes;
+	long long scope;
 	deployment(const string& name);
 	deployment(const string& name, int id);
 	deployment(const string& name, int id, int codes, int scope);
@@ -17,8 +18,7 @@ public:
 	void add(const string& message, int codes);
 	void add(const string& message, int codes, int scope);
 	void clear();
-	void delete_first();
+	void delete_back();
 	void delete_front();
-	void set_codes(int codes);
-	void set_scope(int scope);
+	list<string> get_messages();
 };
