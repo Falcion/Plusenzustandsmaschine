@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="deployment\deployment.h" />
     <ClInclude Include="flow\stateflow.h" />
     <ClInclude Include="flow_subjects\shifts.h" />
     <ClInclude Include="flow_subjects\states.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="deployment\deployment.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="flow\stateflow.cpp" />
     <ClCompile Include="flow_subjects\shifts.cpp" />

@@ -18,15 +18,15 @@ class stateflow {
     // Constructor of instance for stateflow
     stateflow();
     // Constructor of instance for stateflow
-    stateflow(states& state);
+    explicit stateflow(states& state);
     // Constructor of instance for stateflow
     stateflow(states& state, unique_ptr<stateflow> inner);
     // Constructor of instance for stateflow
-    stateflow(shifts& shift);
+    explicit stateflow(shifts& shift);
     // Constructor of instance for stateflow
     stateflow(shifts& shift, unique_ptr<stateflow> inner);
     // Constructor of instance for stateflow
-    stateflow(unique_ptr<stateflow> inner);
+    explicit stateflow(unique_ptr<stateflow> inner);
     // Constructor of instance for stateflow
     stateflow(states& state, shifts& shift, unique_ptr<stateflow> inner);
     // Constructor of instance for stateflow
@@ -54,13 +54,13 @@ class stateflow {
     // Getter for "SHIFT" field
     const shifts get_shift();
     // Getter for "STATEFLOW_INNER" field
-    const stateflow& get_inner();
+    const unique_ptr<stateflow> get_inner();
     // Getter for "CODE" field
     const long long& get_code();
 };
 
 // Static function generating default unchecked integer hash from given instance of a stateflow
-static const long long gen_hash(states& state, shifts& shift) {
+static long long gen_hash(states const& state, shifts const& shift) {
     long long hash = 17;
 
     hash *= 31 + int(state);

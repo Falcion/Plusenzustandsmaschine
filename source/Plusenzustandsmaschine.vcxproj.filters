@@ -30,6 +30,9 @@
     <ClInclude Include="flow\stateflow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="deployment\deployment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -45,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="flow\stateflow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="deployment\deployment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

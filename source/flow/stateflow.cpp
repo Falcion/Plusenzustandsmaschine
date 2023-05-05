@@ -116,3 +116,37 @@ void stateflow::update(states& state, shifts& shift) {
 
     this->code = gen_hash(this->state, this->shift);
 }
+
+void stateflow::flush()
+{
+    this->state = states::UNKNOWN;
+    this->shift = shifts::BEGIN;
+    
+    this->inner = nullptr;
+
+    this->code = -1;
+}
+
+// Getter for "STATE" field
+const states stateflow::get_state()
+{
+    return this->state;
+}
+
+// Getter for "SHIFT" field
+const shifts stateflow::get_shift()
+{
+    return this->shift;
+}
+
+// Getter for "STATEFLOW_INNER" field
+const unique_ptr<stateflow> stateflow::get_inner()
+{
+    return make_unique<stateflow>(this->inner);
+}
+
+// Getter for "CODE" field
+const long long& stateflow::get_code()
+{
+    return this->code;
+}
