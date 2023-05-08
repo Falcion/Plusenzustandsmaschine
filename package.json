@@ -1,0 +1,42 @@
+{
+  "name": "plusenzustandsmaschine",
+  "version": "2.0.0",
+  "description": "C++ package about finite automaton within states on stack-based information storaging",
+  "main": " ",
+  "scripts": {
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major",
+    "test": "",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Falcion/Plusenzustandsmaschine+git.git"
+  },
+  "directories": {
+    "doc": "docs",
+    "lib": "source",
+    "debug": "debug"
+  },
+  "keywords": [
+    "cplusplus",
+    "sequencer",
+    "statemachine",
+    "states"
+  ],
+  "author": "Falcion",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Falcion/Plusenzustandsmaschine+git/issues"
+  },
+  "homepage": "https://github.com/Falcion/Plusenzustandsmaschine+git#readme",
+  "readme": "./README.md",
+  "devDependencies": {
+    "@commitlint/cli": "^17.5.0",
+    "@commitlint/config-conventional": "^17.4.4",
+    "husky": "^8.0.0",
+    "standard-version": "^9.5.0"
+  }
+}
