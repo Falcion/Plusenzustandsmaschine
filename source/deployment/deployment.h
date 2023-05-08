@@ -1,3 +1,5 @@
+#include "../pch.h"
+
 #include <string>
 #include <map>
 
@@ -36,6 +38,8 @@ namespace zustandsmaschine {
         void delete_front();
         // Delete back element from dictionary alike list
         void delete_back();
+        // Deconstructor of deployment
+        ~deployment();
         // Constructor of deployment
         deployment(string name);
         // Constructor of deployment

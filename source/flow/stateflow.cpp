@@ -1,3 +1,5 @@
+#include "../pch.h"
+
 #include "stateflow.h"
 
 #include <memory>
@@ -10,6 +12,10 @@ namespace zustandsmaschine {
 
         this->code = gen_hash(this->state, this->shift);
     };
+    // Destructor for instance
+    stateflow::~stateflow() {
+
+    }
     // Constructor of instance for stateflow
     stateflow::stateflow(states& state) : inner(nullptr) {
         this->state = state;
@@ -21,7 +27,7 @@ namespace zustandsmaschine {
     stateflow::stateflow(states& state, unique_ptr<stateflow> inner) {
         this->state = state;
         this->shift = shifts::BEGIN;
-        this->inner = make_unique<stateflow>(inner);
+        this->inner = move(inner);
 
         this->code = gen_hash(this->state, this->shift);
     };
@@ -36,7 +42,7 @@ namespace zustandsmaschine {
     stateflow::stateflow(shifts& shift, unique_ptr<stateflow> inner) {
         this->state = states::UNKNOWN;
         this->shift = shift;
-        this->inner = make_unique<stateflow>(inner);
+        this->inner = move(inner);
 
         this->code = gen_hash(this->state, this->shift);
     };
@@ -44,7 +50,7 @@ namespace zustandsmaschine {
     stateflow::stateflow(unique_ptr<stateflow> inner) {
         this->state = states::UNKNOWN;
         this->shift = shifts::BEGIN;
-        this->inner = make_unique<stateflow>(inner);
+        this->inner = move(inner);
 
         this->code = gen_hash(this->state, this->shift);
     }
@@ -52,7 +58,7 @@ namespace zustandsmaschine {
     stateflow::stateflow(states& state, shifts& shift, unique_ptr<stateflow> inner) {
         this->state = state;
         this->shift = shift;
-        this->inner = make_unique<stateflow>(inner);
+        this->inner = move(inner);
 
         this->code = gen_hash(this->state, this->shift);
     }
@@ -60,7 +66,7 @@ namespace zustandsmaschine {
     stateflow::stateflow(states& state, shifts& shift, unique_ptr<stateflow> inner, long long& code) {
         this->state = state;
         this->shift = shift;
-        this->inner = make_unique<stateflow>(inner);;
+        this->inner = move(inner);;
         this->code = code;
     }
     // Constructor of instance for stateflow
@@ -79,7 +85,7 @@ namespace zustandsmaschine {
     // Method updating params of current instance of flow with given arrangement
     void stateflow::update(states& state, unique_ptr<stateflow> inner) {
         this->state = state;
-        this->inner = make_unique<stateflow>(inner);
+        this->inner = move(inner);
 
         this->code = gen_hash(this->state, this->shift);
     }
@@ -92,13 +98,13 @@ namespace zustandsmaschine {
     // Method updating params of current instance of flow with given arrangement
     void stateflow::update(shifts& shift, unique_ptr<stateflow> inner) {
         this->shift = shift;
-        this->inner = make_unique<stateflow>(inner);
+        this->inner = move(inner);
 
         this->code = gen_hash(this->state, this->shift);
     }
     // Method updating params of current instance of flow with given arrangement
     void stateflow::update(unique_ptr<stateflow> inner) {
-        this->inner = make_unique<stateflow>(inner);
+        this->inner = move(inner);
 
         this->code = gen_hash(this->state, this->shift);
     }
@@ -106,7 +112,7 @@ namespace zustandsmaschine {
     void stateflow::update(states& state, shifts& shift, unique_ptr<stateflow> inner) {
         this->state = state;
         this->shift = shift;
-        this->inner = make_unique<stateflow>(inner);
+        this->inner = move(inner);
 
         this->code = gen_hash(this->state, this->shift);
     }
@@ -143,12 +149,22 @@ namespace zustandsmaschine {
     // Getter for "STATEFLOW_INNER" field
     const unique_ptr<stateflow> stateflow::get_inner()
     {
-        return make_unique<stateflow>(this->inner);
+        return move(this->inner);
     }
 
     // Getter for "CODE" field
     const long long& stateflow::get_code()
     {
         return this->code;
+    }
+    stateflow& stateflow::operator=(stateflow const& flow)
+    {
+        if (this == &flow)
+            return *this;
+
+        this->state = flow.state;
+        this->shift = flow.shift;
+
+        return *this;
     }
 }

@@ -1,3 +1,5 @@
+#include "../pch.h"
+
 #include <string>
 
 #include "shifts.h"

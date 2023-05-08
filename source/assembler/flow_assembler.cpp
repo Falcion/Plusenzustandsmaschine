@@ -1,3 +1,5 @@
+#include "../pch.h"
+
 #include "flow_assembler.h"
 
 namespace zustandsmaschine {
@@ -9,6 +11,12 @@ namespace zustandsmaschine {
 		this->flow = stateflow();
 
 		this->code = int(state) + int(shift);
+	}
+	// Deconstructor of assembler
+	flow_assembler::~flow_assembler() {
+		// Call the destructor of the deployment member explicitly
+		// NOT IMPLEMENTED: https://rules.sonarsource.com/cpp/RSPEC-3432
+		//deploy.~deployment();
 	}
 	// Constructor of assembler
 	flow_assembler::flow_assembler(states state, shifts shift) {

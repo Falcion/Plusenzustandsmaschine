@@ -1,3 +1,5 @@
+#include "../pch.h"
+
 #include "../flow_subjects/states.h"
 #include "../flow_subjects/shifts.h"
 
@@ -30,6 +32,8 @@ namespace zustandsmaschine {
     public:
         // Constructor of instance for stateflow
         stateflow();
+        // Destructor for instance
+        ~stateflow();
         // Constructor of instance for stateflow
         explicit stateflow(states& state);
         // Constructor of instance for stateflow
@@ -71,16 +75,7 @@ namespace zustandsmaschine {
         // Getter for "CODE" field
         const long long& get_code();
         // Overriding "EQUALS" operator
-        stateflow& operator=(stateflow const& flow) {
-
-            if (this == &flow)
-                return *this;
-
-            this->state = flow.state;
-            this->shift = flow.shift;
-
-            return *this;
-        }
+        stateflow& operator=(stateflow const& flow);
         friend string to_string(stateflow const& flow) {
             return state_to_string(flow.state) + "::" + shift_to_string(flow.shift);
         }

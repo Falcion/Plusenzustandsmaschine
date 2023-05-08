@@ -1,3 +1,5 @@
+#include "../pch.h"
+
 #include "deployment.h"
 
 #include <chrono>
@@ -22,6 +24,10 @@ namespace zustandsmaschine {
     // Delete back element from dictionary alike list
     void deployment::delete_back() {
         this->interactions.erase(interactions.end());
+    }
+    // Deconstructor of deployment
+    deployment::~deployment() {
+        interactions.clear();
     }
     // Constructor of deployment
     deployment::deployment(string name) {

@@ -1,5 +1,7 @@
-#include "./../deployment/deployment.h"
-#include "./../flow/stateflow.h"
+#include "../pch.h"
+
+#include "../deployment/deployment.h"
+#include "../flow/stateflow.h"
 
 #pragma once
 #ifdef _EXPORTING
@@ -30,6 +32,8 @@ namespace zustandsmaschine {
 	public:
 		// Constructor of assembler
 		flow_assembler();
+		// Deconstructor of assembler
+		~flow_assembler();
 		// Constructor of assembler
 		flow_assembler(states state, shifts shift);
 		// Constructor of assembler

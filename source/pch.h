@@ -8,6 +8,7 @@
 #define PCH_H
 
 // add headers that you want to pre-compile here
+#include "framework.h"
 #include "flow_subjects/shifts.h"
 #include "flow_subjects/states.h"
 #include "flow/stateflow.h"
