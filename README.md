@@ -78,7 +78,10 @@ Instruction about working and setting up automatically linted commits and change
 Process of installation within DLL packaging system:
 
 1. download DLL of this project either through Github or through some different resources;
-2. inject DLL into your C++ project with help of IDEs like VS (which are supporting easy-to-use DLL packaging systems): in other cases, check documentations.
+2. inject DLL into your C++ project with help of IDEs like VS (which are supporting easy-to-use DLL packaging systems): in other cases, check documentations: see guide by this [guy](https://www.youtube.com/watch?v=ZYLKI8FxiD8).
+   1. Download headers, DLL and LIB files from releases or from repository directly (seek "DEBUG" directory);
+   2. Create subfolder for library: "includes" and "lib", in first, put all headers, you'll be using them through `#include` and in second, put the `.LIB` file, the DLL put in the code path of your project (within files like `.VCPROJ`);
+   3. Set up them with VS Code through `Linker` and `C++/General`: for more advanced tutorial, seek the video-guide.
 3. done!
 
 If you use a different IDE without native support for NUGET, read this article: [using new commands in .NET]( https://stackoverflow.com/questions/40675162/install-a-nuget-package-in-visual-studio-code/).

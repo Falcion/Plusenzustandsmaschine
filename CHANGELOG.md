@@ -15,7 +15,7 @@ All notable changes to this project will be documented in this file. See [standa
 * **stateflow:** add stateflow mechs and other substate main idea ([d91cb35](https://github.com/mokkapps/changelog-generator-demo/commits/d91cb35d22007913b887464e026d2f4bcf7e00f5))
 
 
-### DOcumentation
+### Documentation
 
 * **init:** add demo version of readme ([a68b74f](https://github.com/mokkapps/changelog-generator-demo/commits/a68b74f953902a80f6481bd66275273f5f80d693))
 * **init:** created codeowners to represent author ([d1eef07](https://github.com/mokkapps/changelog-generator-demo/commits/d1eef07c41a061cf6efac9bf2ed7461c563ba282))

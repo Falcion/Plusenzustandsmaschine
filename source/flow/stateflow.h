@@ -1,5 +1,3 @@
-#include "../pch.h"
-
 #include "../flow_subjects/states.h"
 #include "../flow_subjects/shifts.h"
 
@@ -35,33 +33,33 @@ namespace zustandsmaschine {
         // Destructor for instance
         ~stateflow();
         // Constructor of instance for stateflow
-        explicit stateflow(states& state);
+        stateflow(states& state);
         // Constructor of instance for stateflow
-        stateflow(states& state, unique_ptr<stateflow> inner);
+        stateflow(states& state, const stateflow& inner);
         // Constructor of instance for stateflow
-        explicit stateflow(shifts& shift);
+        stateflow(shifts& shift);
         // Constructor of instance for stateflow
-        stateflow(shifts& shift, unique_ptr<stateflow> inner);
+        stateflow(shifts& shift, const stateflow& inner);
         // Constructor of instance for stateflow
-        explicit stateflow(unique_ptr<stateflow> inner);
+        stateflow(const stateflow& inner);
         // Constructor of instance for stateflow
-        stateflow(states& state, shifts& shift, unique_ptr<stateflow> inner);
+        stateflow(states& state, shifts& shift, const stateflow& inner);
         // Constructor of instance for stateflow
-        stateflow(states& state, shifts& shift, unique_ptr<stateflow> inner, long long& code);
+        stateflow(states& state, shifts& shift, const stateflow& inner, long long& code);
         // Constructor of instance for stateflow
         stateflow(states& state, shifts& shift);
         // Method updating params of current instance of flow with given arrangement
         void update(states& state);
         // Method updating params of current instance of flow with given arrangement
-        void update(states& state, unique_ptr<stateflow> inner);
+        void update(states& state, const stateflow& inner);
         // Method updating params of current instance of flow with given arrangement
         void update(shifts& shift);
         // Method updating params of current instance of flow with given arrangement
-        void update(shifts& shift, unique_ptr<stateflow> inner);
+        void update(shifts& shift, const stateflow& inner);
         // Method updating params of current instance of flow with given arrangement
-        void update(unique_ptr<stateflow> inner);
+        void update(const stateflow& inner);
         // Method updating params of current instance of flow with given arrangement
-        void update(states& state, shifts& shift, unique_ptr<stateflow> inner);
+        void update(states& state, shifts& shift, const stateflow& inner);
         // Method updating params of current instance of flow with given arrangement
         void update(states& state, shifts& shift);
         // Method clearing current params of instance and randomizing current code for instability check
