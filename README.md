@@ -1,6 +1,8 @@
 <div align="center">
+<!--
     <a href="https://github.com/Falcion/Plusenzustandsmaschine/actions/workflows/codeql.yml"><img src="https://github.com/Falcion/Plusenzustandsmaschine/actions/workflows/codeql.yml/badge.svg" alt="codeql"/></a>
     <a href="https://github.com/Falcion/Plusenzustandsmaschine/actions/workflows/build.yml"><img src="https://github.com/Falcion/Plusenzustandsmaschine/actions/workflows/build.yml/badge.svg" alt="build (sonarcloud)"/></a>
+-->
     <a href="https://github.com/Falcion/Plusenzustandsmaschine/graphs/contributors"><img src="https://img.shields.io/github/contributors/Falcion/Plusenzustandsmaschine" alt="contributors"/></a>
     <a href="https://github.com/Falcion/Plusenzustandsmaschine/stargazers"><img src="https://img.shields.io/github/stars/Falcion/Plusenzustandsmaschine" alt="stargazers"/></a>
     <a href="https://github.com/Falcion/Plusenzustandsmaschine/forks"><img src="https://img.shields.io/github/forks/Falcion/Plusenzustandsmaschine" alt="forks"/></a>
@@ -10,7 +12,9 @@
 
 <br/>
 <div align="center">
+    <!--
     <img src="./.github/images/icon.png" alt="icon" width="160" height="160"/>
+    -->
     <h3>Plusenzustandsmaschine</h3>
     <p>Sequence your code
     <br/>
