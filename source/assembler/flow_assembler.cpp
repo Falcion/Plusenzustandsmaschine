@@ -7,61 +7,69 @@ namespace zustandsmaschine {
 	flow_assembler::flow_assembler() {
 		this->state = states::UNKNOWN;
 		this->shift = shifts::BEGIN;
+		this->deploy = deployment();
 
 		this->flow = stateflow();
 
-		this->code = int(state) + int(shift);
+		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}
 	// Deconstructor of assembler
 	flow_assembler::~flow_assembler() {
 		// Call the destructor of the deployment member explicitly
 		// NOT IMPLEMENTED: https://rules.sonarsource.com/cpp/RSPEC-3432
-		//deploy.~deployment();
+		deploy.~deployment();
 	}
 	// Constructor of assembler
 	flow_assembler::flow_assembler(states state, shifts shift) {
 		this->state = state;
 		this->shift = shift;
+		this->deploy = deployment();
 
 		this->flow = stateflow();
 
-		this->code = int(state) + int(shift);
+		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
+
+		this->deploy = deployment("ASSEMBLER");
 	}
 	// Constructor of assembler
 	flow_assembler::flow_assembler(stateflow& _stateflow) {
 		this->state = _stateflow.get_state();
 		this->shift = _stateflow.get_shift();
+		this->deploy = deployment();
 
 		this->flow = _stateflow;
 
-		this->code = int(state) + int(shift);
+		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}
 	// Constructor of assembler
 	flow_assembler::flow_assembler(stateflow& _stateflow, states state, shifts shift) {
 		this->state = state;
 		this->shift = shift;
+		this->deploy = deployment();
 
 		this->flow = _stateflow;
 
-		this->code = int(state) + int(shift);
+		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}
 	// Constructor of assembler
 	flow_assembler::flow_assembler(states state) {
 		this->state = state;
 		this->shift = shifts::BEGIN;
+		this->deploy = deployment();
 
 		this->flow = stateflow();
 
-		this->code = int(state) + int(shift);
+		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}
 	// Constructor of assembler
 	flow_assembler::flow_assembler(shifts shift) {
 		this->state = states::UNKNOWN;
 		this->shift = shift;
+		this->deploy = deployment();
 
 		this->flow = stateflow();
 
-		this->code = int(state) + int(shift);
+		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}
 	// Change instance of flow's assembler
 	void flow_assembler::assemble(stateflow& _stateflow) {
@@ -76,7 +84,7 @@ namespace zustandsmaschine {
 
 		this->flow = _stateflow;
 
-		this->code = int(state) + int(shift);
+		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}
 	// Change instance of flow's assembler
 	void flow_assembler::assemble(stateflow& _stateflow, states state, shifts shift) {
@@ -91,7 +99,7 @@ namespace zustandsmaschine {
 
 		this->flow = _stateflow;
 
-		this->code = int(state) + int(shift);
+		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}
 	// Change instance of flow's assembler
 	void flow_assembler::assemble(states state) {
@@ -104,7 +112,7 @@ namespace zustandsmaschine {
 
 		this->flow = stateflow();
 
-		this->code = int(state) + int(shift);
+		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}
 	// Change instance of flow's assembler
 	void flow_assembler::assemble(shifts shift) {
@@ -117,7 +125,7 @@ namespace zustandsmaschine {
 
 		this->flow = stateflow();
 
-		this->code = int(state) + int(shift);
+		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}
 	// Nullify instance of flow's assembler
 	void flow_assembler::disassemble() {

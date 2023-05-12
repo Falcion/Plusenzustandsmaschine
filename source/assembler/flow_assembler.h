@@ -15,7 +15,7 @@
 
 namespace zustandsmaschine {
 	// Stateflow assembler
-	class flow_assembler {
+	class CLASS_DECLSPEC flow_assembler {
 	private:
 		// State of current assembler's flow instance
 		states state;
@@ -24,7 +24,7 @@ namespace zustandsmaschine {
 		// Stabilizer inner of current assembler's flow instance
 		stateflow flow;
 		// Message system of current instance
-		deployment deploy = deployment("ASSEMBLER");
+		deployment deploy;
 		// Hash of current stable check of assembler
 		long long code = 0;
 	public:

@@ -16,6 +16,8 @@
 #define METHOD_DECLSPEC   __declspec(dllimport)
 #endif
 
+using namespace std;
+
 namespace zustandsmaschine {
     // Delete front element from dictionary alike list
     void deployment::delete_front() {
@@ -24,6 +26,11 @@ namespace zustandsmaschine {
     // Delete back element from dictionary alike list
     void deployment::delete_back() {
         this->interactions.erase(interactions.end());
+    }
+    deployment::deployment()
+    {
+        this->name = "Default";
+        this->id = 0;
     }
     // Deconstructor of deployment
     deployment::~deployment() {
@@ -50,8 +57,6 @@ namespace zustandsmaschine {
     }
     // Method of "APPROACH" type to deployment, adding message into instance of interactions
     void deployment::add(string message) {
-        int size = interactions.size();
-
         // Compute the timestamp in microseconds
         auto now = std::chrono::high_resolution_clock::now();
         std::size_t timestamp = std::chrono::time_point_cast<std::chrono::microseconds>(now).time_since_epoch().count();
@@ -62,37 +67,17 @@ namespace zustandsmaschine {
         this->scope = current_codes ^ timestamp ^ this->codes;
 
         if (this->scope == -1) { // "-1" can't be got by automatic system, it must be given through "DIRECT-DIRECT APPROACH"
-            this->scope += size;
+            this->scope += interactions.size();
         }
 
         this->codes = current_codes;
 
-        // if given pair does exists in given interactions map
-        if (interactions.find(size) != interactions.end()) {
-            pair<long long, string> temp = interactions[size];
-
-            interactions[size] == pair<long long, string>(codes, message);
-
-            int i = size;
-
-            // scavenging existing pairs of given range (to non-existent)
-            while (interactions.find(size) != interactions.end()) {
-                i++;
-            }
-
-            // after scavenging to non-existent, we can finally add
-            interactions.insert(make_pair(i, pair<long long, string>(codes, message)));
-        }
-        else {
-            interactions[size++] = pair<long long, string>(codes, message);
-        }
+        interactions.emplace_back(codes, message);
 
         analyze();
     }
     // Method of "DIRECT-APPROACH" type to deployment, adding message into instance of interactions within custom hash
     void deployment::add(string message, int _codes) {
-        int size = interactions.size();
-
         // Compute the timestamp in microseconds
         auto now = std::chrono::high_resolution_clock::now();
         std::size_t timestamp = std::chrono::time_point_cast<std::chrono::microseconds>(now).time_since_epoch().count();
@@ -101,64 +86,24 @@ namespace zustandsmaschine {
         this->scope = _codes ^ timestamp ^ this->codes;
 
         if (this->scope == -1) { // "-1" can't be got by automatic system, it must be given through "DIRECT-DIRECT APPROACH"
-            this->scope += size;
+            this->scope += interactions.size();
         }
 
         this->codes = _codes;
 
-        // if given pair does exists in given interactions map
-        if (interactions.find(size) != interactions.end()) {
-            pair<long long, string> temp = interactions[size];
-
-            interactions[size] == pair<long long, string>(_codes, message);
-
-            int i = size;
-
-            // scavenging existing pairs of given range (to non-existent)
-            while (interactions.find(size) != interactions.end()) {
-                i++;
-            }
-
-            // after scavenging to non-existent, we can finally add
-            interactions.insert(make_pair(i, pair<long long, string>(_codes, message)));
-            interactions.insert(make_pair(i+1, pair<long long, string>(_codes, "Event had been called with custom \"DIRECT APPROACH\" variable, its delegate is attached")));
-        }
-        else {
-            interactions[size++] = pair<long long, string>(_codes, message);
-            interactions[size+2] = pair<long long, string>(_codes, "Event had been called with custom \"DIRECT APPROACH\" variable, its delegate is attached");
-        }
+        interactions.emplace_back(_codes, message);
+        interactions.emplace_back(_codes, "Event had been called with custom \"DIRECT-DIRECT APPROACH\" variable, its delegate is attached: " + to_string(scope));
 
         analyze();
     }
     // Method of "DIRECT-DIRECT APPROACH" type to deployment, adding message into instance of interactions within custom hash
-    void deployment::add(string message, int _codes, int scope) {
-        int size = interactions.size();
-
+    void deployment::add(string message, int _codes, int _scope) {
         this->codes = _codes;
 
-        this->scope = scope; // here you can get "-1" through direct approach
+        this->scope = _scope; // here you can get "-1" through direct approach
 
-        // if given pair does exists in given interactions map
-        if (interactions.find(size) != interactions.end()) {
-            pair<long long, string> temp = interactions[size];
-
-            interactions[size] == pair<long long, string>(_codes, message);
-
-            int i = size;
-
-            // scavenging existing pairs of given range (to non-existent)
-            while (interactions.find(size) != interactions.end()) {
-                i++;
-            }
-
-            // after scavenging to non-existent, we can finally add
-            interactions.insert(make_pair(i, pair<long long, string>(_codes, message)));
-            interactions.insert(make_pair(i + 1, pair<long long, string>(_codes, "Event had been called with custom \"DIRECT-DIRECT APPROACH\" variable, its delegate is attached: " + to_string(scope))));
-        }
-        else {
-            interactions[size++] = pair<long long, string>(_codes, message);
-            interactions[size + 2] = pair<long long, string>(_codes, "Event had been called with custom \"DIRECT-DIRECT APPROACH\" variable, its delegate is attached: " + to_string(scope));
-        }
+        interactions.emplace_back(_codes, message);
+        interactions.emplace_back(_codes, "Event had been called with custom \"DIRECT-DIRECT APPROACH\" variable, its delegate is attached: " + to_string(_scope));
 
         analyze();
     }
@@ -172,17 +117,23 @@ namespace zustandsmaschine {
         if (this->codes == -1) {
             add("Deployment has caught instability value!");
         }
-        else {
-            int size = interactions.size();
-
-            if (interactions[size].first != this->codes)
-                interactions[size] = pair<long long, string>(this->codes, interactions[size].second);
-        }
         
         if (this->scope == -1) {
             add("Total checksum SCOPE of deployment caught in total instability and exception situtation! Misbehave concluded in " + to_string(codes) + "/" + to_string(interactions.size()));
         }
-        else
-            add("[APPROXIMATE STEP] Scope of step: " + to_string(this->scope));
+    }
+    //LNK2019
+    deployment& deployment::operator=(const deployment& other)
+    {
+        if (this != &other)
+        {
+            // copy all fields from the other object
+            this->name = other.name;
+            this->id = other.id;
+            this->codes = other.codes;
+            this->scope = other.scope;
+            this->interactions = other.interactions;
+        }
+        return *this;
     }
 }
