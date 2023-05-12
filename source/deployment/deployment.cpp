@@ -72,7 +72,8 @@ namespace zustandsmaschine {
 
         this->codes = current_codes;
 
-        interactions.emplace_back(codes, message);
+        auto sizet = interactions.size();
+        interactions.insert({ sizet+1, pair<long long, string>(codes, message) });
 
         analyze();
     }
@@ -91,8 +92,9 @@ namespace zustandsmaschine {
 
         this->codes = _codes;
 
-        interactions.emplace_back(_codes, message);
-        interactions.emplace_back(_codes, "Event had been called with custom \"DIRECT-DIRECT APPROACH\" variable, its delegate is attached: " + to_string(scope));
+        auto sizet = interactions.size();
+        interactions.insert({ sizet + 1, pair<long long, string>(_codes, message) });
+        interactions.insert({ sizet + 2, pair<long long, string>(_codes, "Event had been called with custom \"DIRECT APPROACH\" variable, its delegates are attached: " + to_string(scope)) });
 
         analyze();
     }
@@ -102,8 +104,9 @@ namespace zustandsmaschine {
 
         this->scope = _scope; // here you can get "-1" through direct approach
 
-        interactions.emplace_back(_codes, message);
-        interactions.emplace_back(_codes, "Event had been called with custom \"DIRECT-DIRECT APPROACH\" variable, its delegate is attached: " + to_string(_scope));
+        auto sizet = interactions.size();
+        interactions.insert({ sizet + 1, pair<long long, string>(_codes, message) });
+        interactions.insert({ sizet + 2, pair<long long, string>(_codes, "Event had been called with custom \"DIRECT-DIRECT APPROACH\" variable, its delegates are attached: " + to_string(scope)) });
 
         analyze();
     }

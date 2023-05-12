@@ -31,7 +31,7 @@ namespace zustandsmaschine {
         // Hash combination value of checksum of deployment, current time which symbolizes chaos of current deployment and exception position through code with analyzer
         long long scope = 0;
         // Dictionary of messages paired with their stability hashes inserted by position's of current deployment (ID of position)
-        vector<pair<long long, string>> interactions;
+        unordered_map<int, pair<long long, string>> interactions;
         // Delete front element from dictionary alike list
         void delete_front();
         // Delete back element from dictionary alike list
