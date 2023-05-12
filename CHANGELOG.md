@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/mokkapps/changelog-generator-demo/compare/v2.0.0...v2.0.1) (2023-05-12)
+
+
+### Bug fixes
+
+* **core:** mass-fix of CLASS_DECLSPEC and memory-applying (stackoverflow excep) ([dd77ea5](https://github.com/mokkapps/changelog-generator-demo/commits/dd77ea5fcc733ac931b01eef67a8f76a61c19757))
+* **memo_map:** fix of unordered_map stackoverflow -> return to it from `<vector>` ([944d1ee](https://github.com/mokkapps/changelog-generator-demo/commits/944d1ee0ba2608c99e799e88e907341dec500e9f))
+
 ## 2.0.0 (2023-05-08)
 
 
