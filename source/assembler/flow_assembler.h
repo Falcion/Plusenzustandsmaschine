@@ -43,6 +43,8 @@ namespace zustandsmaschine {
 		// Constructor of assembler
 		flow_assembler(shifts shift);
 		// Change instance of flow's assembler
+		void assemble(states state, shifts shift);
+		// Change instance of flow's assembler
 		void assemble(stateflow& _stateflow);
 		// Change instance of flow's assembler
 		void assemble(stateflow& _stateflow, states state, shifts shift);

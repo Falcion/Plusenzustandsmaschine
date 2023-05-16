@@ -17,7 +17,7 @@ namespace zustandsmaschine {
 	flow_assembler::~flow_assembler() {
 		// Call the destructor of the deployment member explicitly
 		// NOT IMPLEMENTED: https://rules.sonarsource.com/cpp/RSPEC-3432
-		deploy.~deployment();
+		//deploy.~deployment();
 	}
 	// Constructor of assembler
 	flow_assembler::flow_assembler(states state, shifts shift) {
@@ -72,6 +72,17 @@ namespace zustandsmaschine {
 		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}
 	// Change instance of flow's assembler
+	void flow_assembler::assemble(states _state, shifts _shift) {
+		string subflow_message = "MOVED FROM: { " + state_to_string(this->state) + ", " + shift_to_string(this->shift) + "; } => { " + state_to_string(_state) + ", " + shift_to_string(_shift) + "; }";
+	
+		this->state = _state;
+		this->shift = _shift;
+
+		redeploy(subflow_message);
+
+		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
+	}
+	// Change instance of flow's assembler
 	void flow_assembler::assemble(stateflow& _stateflow) {
 		string subflow_message = "MOVED FROM: { " + state_to_string(this->state) + ", " + shift_to_string(this->shift) + "; } => { " + state_to_string(_stateflow.get_state()) + ", " + shift_to_string(_stateflow.get_shift()) + "; }";
 		string substate_message = "MOVED WITHIN STATEFLOWS: { " + to_string(this->flow) + "; } => { " + to_string(_stateflow) + " };";
@@ -108,9 +119,6 @@ namespace zustandsmaschine {
 		redeploy(subflow_message);
 
 		this->state = state;
-		this->shift = shifts::BEGIN;
-
-		this->flow = stateflow();
 
 		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}
@@ -120,10 +128,7 @@ namespace zustandsmaschine {
 		
 		redeploy(subflow_message);
 
-		this->state = states::UNKNOWN;
 		this->shift = shift;
-
-		this->flow = stateflow();
 
 		this->code = static_cast<long long>(state) + static_cast<long long>(shift);
 	}

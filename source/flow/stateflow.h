@@ -24,7 +24,7 @@ namespace zustandsmaschine {
         // Enum classified value representing shift of current flow
         shifts shift;
         // Classified value representing inner stateflow of double powered instance for flow
-        unique_ptr<stateflow> inner;
+        pair<states, shifts> inner;
         // Value representing integer hash of given instance and degree of current unsync and instability of the flow
         long long code;
     public:
@@ -33,35 +33,35 @@ namespace zustandsmaschine {
         // Destructor for instance
         ~stateflow();
         // Constructor of instance for stateflow
-        stateflow(states& state);
+        stateflow(states state);
         // Constructor of instance for stateflow
-        stateflow(states& state, const stateflow& inner);
+        stateflow(states state, const pair<states, shifts> inner);
         // Constructor of instance for stateflow
-        stateflow(shifts& shift);
+        stateflow(shifts shift);
         // Constructor of instance for stateflow
-        stateflow(shifts& shift, const stateflow& inner);
+        stateflow(shifts shift, const pair<states, shifts> inner);
         // Constructor of instance for stateflow
-        stateflow(const stateflow& inner);
+        stateflow(const pair<states, shifts>& inner);
         // Constructor of instance for stateflow
-        stateflow(states& state, shifts& shift, const stateflow& inner);
+        stateflow(states state, shifts shift, const pair<states, shifts>& inner);
         // Constructor of instance for stateflow
-        stateflow(states& state, shifts& shift, const stateflow& inner, long long& code);
+        stateflow(states state, shifts shift, const pair<states, shifts>& inner, long long code);
         // Constructor of instance for stateflow
-        stateflow(states& state, shifts& shift);
+        stateflow(states state, shifts shift);
         // Method updating params of current instance of flow with given arrangement
-        void update(states& state);
+        void update(states state);
         // Method updating params of current instance of flow with given arrangement
-        void update(states& state, const stateflow& inner);
+        void update(states state, const pair<states, shifts>& inner);
         // Method updating params of current instance of flow with given arrangement
-        void update(shifts& shift);
+        void update(shifts shift);
         // Method updating params of current instance of flow with given arrangement
-        void update(shifts& shift, const stateflow& inner);
+        void update(shifts shift, const pair<states, shifts>& inner);
         // Method updating params of current instance of flow with given arrangement
-        void update(const stateflow& inner);
+        void update(const pair<states, shifts>& inner);
         // Method updating params of current instance of flow with given arrangement
-        void update(states& state, shifts& shift, const stateflow& inner);
+        void update(states state, shifts shift, const pair<states, shifts>& inner);
         // Method updating params of current instance of flow with given arrangement
-        void update(states& state, shifts& shift);
+        void update(states state, shifts shift);
         // Method clearing current params of instance and randomizing current code for instability check
         void flush();
         // Getter for "STATE" field
@@ -69,7 +69,7 @@ namespace zustandsmaschine {
         // Getter for "SHIFT" field
         const shifts get_shift();
         // Getter for "STATEFLOW_INNER" field
-        const unique_ptr<stateflow> get_inner();
+        const stateflow get_inner();
         // Getter for "CODE" field
         const long long& get_code();
         // Overriding "EQUALS" operator
